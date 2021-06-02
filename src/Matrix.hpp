@@ -18,13 +18,13 @@ namespace nj
 
 /*!
 Objects are stored as a vector of vector.
-For large matrix and general impl use C style arrays or 'std::valarray'.
+For large matrix and general impl use C style arrays or 'std::valarray' for slicing.
 Only integer types can be stored for now. Template classes can be used to store different types.
 
 (https://scicomp.stackexchange.com/questions/3159/is-it-a-good-idea-to-use-vectorvectordouble-to-form-a-matrix-class-for-high/3162)
 (https://stackoverflow.com/questions/59530086/difference-between-array-vector-and-matrix-in-c)
 */
-using Vector2D = std::vector<std::vector<T>>;
+using Vector2D = std::vector<std::vector<int>>;
 
 
 /*!
@@ -81,7 +81,7 @@ class Matrix
 
 };
 
-
+// ----------- Constructors
 Matrix::Matrix(unsigned rows, unsigned cols):nrows(rows), ncols(cols)
 {
     this->ncols = cols;
@@ -100,13 +100,13 @@ Matrix::Matrix(unsigned rows, unsigned cols, int value):Matrix(rows,cols)
     this->data = Vector2D{rows ,std::vector<int>(cols, value)};
 }
 
-
 Matrix::Matrix(Vector2D vec2d):data(vec2d)
 {
     this->nrows = vec2d.size();
     this->ncols = vec2d[0].size();
 }
 
+// ----------- 
 const unsigned Matrix::get_cols() const
 {
     return this->ncols;
@@ -122,6 +122,18 @@ auto Matrix::operator[](const int& i)
     return this->data[i];
 }
 
+std::ostream & operator<<(std::ostream &os, const Matrix& p)
+{
+    for (auto const row : p.data)
+    {
+        for (auto const value : row)
+        {
+            os << value << " ";
+        }
+        os << std::endl;
+    }
+    return os;
+}
 
 // ----------- Matrix Algebra
 const Matrix& Matrix::operator +=(const Matrix& rhs)
@@ -196,19 +208,6 @@ const Matrix& Matrix::operator /=(const int& rhs)
         }
     }
     return *this;
-}
-
-std::ostream & operator<<(std::ostream &os, const Matrix& p)
-{
-    for (auto const row : p.data)
-    {
-        for (auto const value : row)
-        {
-            os << value << " ";
-        }
-        os << std::endl;
-    }
-    return os;
 }
 
 }
