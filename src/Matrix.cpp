@@ -140,11 +140,14 @@ Matrix operator -(const Matrix& lhs, const Matrix& rhs)
 Matrix operator *(const Matrix& lhs, const Matrix& rhs)
 {
     Matrix result(lhs.get_rows(), rhs.get_cols());
-    for(int row = 0; row < lhs.get_rows(); row++)
+    for(int i = 0; i < lhs.get_rows(); ++i)
     {
-        for(int col = 0; col < rhs.get_cols(); col++)
+        for(int j = 0; j < rhs.get_cols(); ++j)
         {
-            result.data[row][col] = lhs.data[row][col] * rhs.data[col][row];
+            for(int k = 0; k < lhs.get_cols(); ++k)
+            {
+                result.data[i][j] = lhs.data[i][k] * rhs.data[k][j];
+            }
         }
     }
     return result;

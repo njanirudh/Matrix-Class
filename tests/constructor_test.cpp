@@ -5,23 +5,47 @@
 
 using namespace nj;
 
-TEST_CASE("Matrix comparator", "[comparator]")
+TEST_CASE("Matrix constructor", "[constructor]")
 {
-
-  nj::Matrix mat1({{1,2,3},
-                   {4,5,6}});
-            
-  nj::Matrix mat2({{5,2,7},
-                   {2,8,6}});
-
-  SECTION("Equality"){
-    REQUIRE(1 == (mat1 == mat1));
-    REQUIRE(0 == (mat1 == mat2));
+  SECTION("Identity"){
+    nj::Matrix mat1(2,2);
+    nj::Matrix result1({{0,0},{0,0}});
+    REQUIRE(mat1 == result1);
   }
 
-  SECTION("Inequality"){
-    REQUIRE(1 == (mat1 != mat2));
-    REQUIRE(0 == (mat1 != mat1));
+  SECTION("Same Values"){
+    nj::Matrix mat2(2,2,5);
+    nj::Matrix result2({{5,5},{5,5}});
+    REQUIRE(mat2 == result2);
+  }
+
+  SECTION("Initializer List"){
+    nj::Matrix mat3({{1,2},{3,4}});
+    nj::Matrix result3({{1,2},{3,4}});
+    REQUIRE(mat3 == result3);
+  }
+}
+
+
+TEST_CASE("Vector constructor", "[constructor]")
+{
+  SECTION("Identity Row Vec"){
+    nj::Matrix mat1(1,2);
+    nj::Matrix result1({{0,0}});
+    REQUIRE(mat1 == result1);
+  }
+
+  // Column vector not working 
+  // SECTION("Identity Col Vec"){
+  //   nj::Matrix mat2(2,1);
+  //   nj::Matrix result2({{0},{0}});
+  //   REQUIRE(mat2 == result2);
+  // }
+
+  SECTION("Copy constructor"){
+    nj::Matrix mat3(3,3,5);
+    nj::Matrix result3(mat3);
+    REQUIRE(mat3 == result3);
   }
 
 }

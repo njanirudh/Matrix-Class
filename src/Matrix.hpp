@@ -20,9 +20,11 @@ namespace nj
 Objects are stored as a vector of vector.
 For large matrix and general impl use C style arrays or 'std::valarray' for slicing.
 Only integer types can be stored for now. Template classes can be used to store different types.
-
 (https://scicomp.stackexchange.com/questions/3159/is-it-a-good-idea-to-use-vectorvectordouble-to-form-a-matrix-class-for-high/3162)
 (https://stackoverflow.com/questions/59530086/difference-between-array-vector-and-matrix-in-c)
+
+We assume that the size of matrices during addition, subtraction, multiplication are correct.
+ie. No size check is performed.
 */
 
 using Vector2D = std::vector<std::vector<int>>;
@@ -86,7 +88,6 @@ class Matrix
         // Inplace scalar arithematic
         const Matrix& operator *=(const int& rhs);
         const Matrix& operator /=(const int& rhs);
-
 
 };
 

@@ -5,6 +5,26 @@
 
 using namespace nj;
 
+TEST_CASE("Matrix comparator", "[comparator]")
+{
+
+  nj::Matrix mat1({{1,2,3},
+                   {4,5,6}});
+            
+  nj::Matrix mat2({{5,2,7},
+                   {2,8,6}});
+
+  SECTION("Equality"){
+    REQUIRE(1 == (mat1 == mat1));
+    REQUIRE(0 == (mat1 == mat2));
+  }
+
+  SECTION("Inequality"){
+    REQUIRE(1 == (mat1 != mat2));
+    REQUIRE(0 == (mat1 != mat1));
+  }
+
+}
 
 TEST_CASE("Matrix arithematic", "[arithmetic]") 
 {
@@ -30,10 +50,15 @@ TEST_CASE("Matrix arithematic", "[arithmetic]")
     REQUIRE(mat4 == result2);
   }
 
-  // SECTION("Multiplication"){
-  //   std::vector<int> v( 5 );
-  //   REQUIRE( v.size() == 5 );
-  // }
+  SECTION("Multiplication"){
+    nj::Matrix mat5({{1,2,3},
+                   {4,5,6},
+                   {7,8,9}});
+    nj::Matrix result3({{30,36,42},
+                   {66,81,96},
+                   {102,126,150}});
+    REQUIRE(result3 == (mat5*mat5));
+  }
 
 }
 
