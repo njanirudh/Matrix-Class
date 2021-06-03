@@ -3,3 +3,5 @@
 3. https://www.quantstart.com/articles/Matrix-Classes-in-C-The-Source-File/
 4. https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading/4421719#4421719
 5. https://developer.lsst.io/v/DM-5063/docs/cpp_docs.html
+6. https://stackoverflow.com/questions/55172815/what-is-the-correct-way-to-compile-multiple-test-sources-with-catch2
+7. https://stackoverflow.com/questions/55172815/what-is-the-correct-way-to-compile-multiple-test-sources-with-catch2

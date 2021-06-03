@@ -1,7 +1,9 @@
 #include "catch.hpp"
-#include "Matrix.hpp"
 
+#include "Matrix.hpp"
 #include <iostream>
+
+using namespace nj;
 
 TEST_CASE("Matrix comparator", "[comparator]")
 {
