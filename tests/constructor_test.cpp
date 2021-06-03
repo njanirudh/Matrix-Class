@@ -35,12 +35,11 @@ TEST_CASE("Vector constructor", "[constructor]")
     REQUIRE(mat1 == result1);
   }
 
-  // Column vector not working 
-  // SECTION("Identity Col Vec"){
-  //   nj::Matrix mat2(2,1);
-  //   nj::Matrix result2({{0},{0}});
-  //   REQUIRE(mat2 == result2);
-  // }
+  SECTION("Identity Col Vec"){
+    nj::Matrix mat2(3,1);
+    nj::Matrix result2{{{0},{0},{0}}};
+    REQUIRE(mat2 == result2);
+  }
 
   SECTION("Copy constructor"){
     nj::Matrix mat3(3,3,5);

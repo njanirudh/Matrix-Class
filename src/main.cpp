@@ -29,4 +29,13 @@ int main(int, char**) {
     mat2 /= 10;
     std::cout<< mat2 <<std::endl;
 
+    nj::Matrix mat6({{1,2,3},
+                   {4,5,6},
+                   {7,8,9}});
+    nj::Matrix mat7{{{1},{1},{1}}};
+
+    auto result5 = mat6*mat7;    
+    std::cout<< result5 <<std::endl;
+ 
+
 }

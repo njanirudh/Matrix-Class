@@ -26,6 +26,18 @@ TEST_CASE("Matrix comparator", "[comparator]")
 
 }
 
+TEST_CASE("Vector-matrix arithematic", "[arithmetic]") 
+{
+  SECTION("Multiplication"){
+    nj::Matrix mat6({{1,2,3},
+                   {4,5,6},
+                   {7,8,9}});
+    nj::Matrix mat7{{{1},{1},{1}}};
+    nj::Matrix result4{{{6},{15},{24}}};
+    REQUIRE(result4 == (mat6*mat7));
+  }
+}
+
 TEST_CASE("Matrix arithematic", "[arithmetic]") 
 {
 
