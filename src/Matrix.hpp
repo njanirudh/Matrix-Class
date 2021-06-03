@@ -24,8 +24,8 @@ Only integer types can be stored for now. Template classes can be used to store 
 (https://scicomp.stackexchange.com/questions/3159/is-it-a-good-idea-to-use-vectorvectordouble-to-form-a-matrix-class-for-high/3162)
 (https://stackoverflow.com/questions/59530086/difference-between-array-vector-and-matrix-in-c)
 */
-using Vector2D = std::vector<std::vector<int>>;
 
+using Vector2D = std::vector<std::vector<int>>;
 
 /*!
 @brief a class to store Matrix an perform general arithematic on it.
@@ -52,12 +52,19 @@ class Matrix
         Vector2D data;
 
         friend std::ostream & operator<<(std::ostream &os, const Matrix& p);
-        friend Matrix operator +(Matrix& lhs, const Matrix& rhs);
-        friend Matrix operator -(Matrix& lhs, const Matrix& rhs);
-        friend Matrix operator *(Matrix& lhs, const Matrix& rhs);
+
+        // Matrix arithematic (Outputs new matrix)
+        friend Matrix operator +(const Matrix& lhs, const Matrix& rhs);
+        friend Matrix operator -(const Matrix& lhs, const Matrix& rhs);
+        friend Matrix operator *(const Matrix& lhs, const Matrix& rhs);
+
+        // Matrix comparison
+        friend bool operator ==(const Matrix &lhs, const Matrix &rhs);
+        friend bool operator !=(const Matrix &lhs, const Matrix &rhs);
     
     public:
 
+        // Default constructors
         Matrix() = default; // DefaultConstructible
         Matrix(const Matrix&) = default; // MoveConstructible
         Matrix(Matrix&&) = default;	// CopyConstructible
@@ -72,9 +79,11 @@ class Matrix
 
         auto operator [](const int& i);
 
+        // Inplace matrix arithematic
         const Matrix& operator +=(const Matrix& rhs);
         const Matrix& operator -=(const Matrix& rhs);
 
+        // Inplace scalar arithematic
         const Matrix& operator *=(const int& rhs);
         const Matrix& operator /=(const int& rhs);
 
@@ -135,6 +144,33 @@ std::ostream & operator<<(std::ostream &os, const Matrix& p)
     return os;
 }
 
+bool operator ==(const Matrix &lhs, const Matrix &rhs)
+{
+    bool equality = false;
+    for(int row = 0; row < lhs.get_rows(); row++)
+    {
+        for(int col = 0; col < lhs.get_cols(); col++)
+        {
+            if(lhs.data[row][col] == rhs.data[row][col])
+            {
+                equality = true;
+            }
+            else
+            {
+                equality = false;
+                return equality;
+            }
+                
+        }
+    }
+    return equality;
+}
+
+bool operator !=(const Matrix &lhs, const Matrix &rhs)
+{
+    return !(lhs == rhs);
+}
+
 // ----------- Matrix Algebra
 const Matrix& Matrix::operator +=(const Matrix& rhs)
 {
@@ -160,19 +196,33 @@ const Matrix& Matrix::operator -=(const Matrix& rhs)
     return *this;
 }
 
-Matrix operator +(Matrix& lhs, const Matrix& rhs)
+Matrix operator +(const Matrix& lhs, const Matrix& rhs)
 {
-    lhs += rhs;
-    return lhs;
+    Matrix result(lhs.get_rows(), rhs.get_cols());
+    for(int row = 0; row < lhs.get_rows(); row++)
+    {
+        for(int col = 0; col < lhs.get_cols(); col++)
+        {
+            result.data[row][col] = lhs.data[row][col] + rhs.data[row][col];
+        }
+    }
+    return result;
 }
 
-Matrix operator -(Matrix& lhs, const Matrix& rhs)
+Matrix operator -(const Matrix& lhs, const Matrix& rhs)
 {
-    lhs -= rhs;
-    return lhs;
+    Matrix result(lhs.get_rows(), rhs.get_cols());
+    for(int row = 0; row < lhs.get_rows(); row++)
+    {
+        for(int col = 0; col < lhs.get_cols(); col++)
+        {
+            result.data[row][col] = lhs.data[row][col] - rhs.data[row][col];
+        }
+    }
+    return result;
 }
 
-Matrix operator *(Matrix& lhs, const Matrix& rhs)
+Matrix operator *(const Matrix& lhs, const Matrix& rhs)
 {
     Matrix result(lhs.get_rows(), rhs.get_cols());
     for(int row = 0; row < lhs.get_rows(); row++)
