@@ -1,8 +1,8 @@
 # Matrix Class
-A general storage class for Matrix written in C++ along with best practices.
-Unit tests written in CTest + Catch2.
-See tests/*.cpp to check various functionalities.  
-Few design and documentation ideas taken from C++ JSON library 'nlohmann-json'. 
+A general storage class for Matrix written in C++ along with best practices.    
+Unit tests written in CTest + Catch2.    
+See tests/*.cpp to check various functionalities.      
+Few design and documentation ideas taken from C++ JSON library 'nlohmann-json'.     
 
 # Standards and Good practices
 1. https://isocpp.org/
@@ -18,6 +18,6 @@ Few design and documentation ideas taken from C++ JSON library 'nlohmann-json'.
 7. https://github.com/nlohmann/json
 
 # Author
-Anirudh NJ
-anijaya9@gmail.com
-https://github.com/njanirudh
+Anirudh NJ     
+anijaya9@gmail.com     
+https://github.com/njanirudh      
