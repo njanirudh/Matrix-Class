@@ -146,7 +146,7 @@ Matrix operator *(const Matrix& lhs, const Matrix& rhs)
         {
             for(int k = 0; k < lhs.get_cols(); ++k)
             {
-                result.data[i][j] = lhs.data[i][k] * rhs.data[k][j];
+                result.data[i][j] += lhs.data[i][k] * rhs.data[k][j];
             }
         }
     }
