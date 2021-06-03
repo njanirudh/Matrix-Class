@@ -9,7 +9,9 @@ Few design and documentation ideas taken from C++ JSON library 'nlohmann-json'.
 $ cd <path to project>/Matrix-Class    
 $ cd build/    
 $ cmake ../    
-$ make -j6    
+$ make -j6   
+$ cd build/bin/
+$ ./Matrix
 ```
   
 ### Standards and Good practices
