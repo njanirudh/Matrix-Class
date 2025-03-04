@@ -5,8 +5,8 @@
  * Contact: anijaya9@gmail.com
  */
 
-#ifndef INCLUDE_MATRIX_HPP
-#define INCLUDE_MATRIX_HPP
+#ifndef NJ_MATRIX_INCLUDE_HPP
+#define NJ_MATRIX_INCLUDE_HPP
 
 #include <vector>   // vector
 #include <iostream> // cout, endl
