@@ -4,6 +4,10 @@ Unit tests written in CTest + Catch2.
 See tests/*.cpp to check various functionalities.      
 Few design and documentation ideas taken from C++ JSON library 'nlohmann-json'.     
 
+### Future Extensions
+* SIMD techniques. CPU Intrensics
+* SIMT techniques. CUDA 
+
 ### How to use it?
 ```
 $ cd <path to project>/Matrix-Class    
